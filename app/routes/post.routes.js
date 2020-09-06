@@ -35,4 +35,16 @@ router.route('/:id').delete((req, res) => {
         .catch(err => res.status(400).json({ error: err }));
 });
 
+router.route('/update/:id').post((req, res) => {
+    Post.findById(req.body.id).then(post => {
+        post.title = req.body.title;
+        post.content = req.body.content;
+
+        post
+            .save()
+            .then(() => res.json('Post updated'))
+            .catch(err => res.status(400).json({ error: err })); 
+    });
+});
+
 module.exports = router;

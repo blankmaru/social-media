@@ -67,10 +67,15 @@ function initial() {
 }
 
 const PostRoute = require('./app/routes/post.routes');
+const AuthorRoute = require('./app/routes/user-author-access.routes');
 
 app.use('/explore', PostRoute);
+app.use('/', AuthorRoute);
 require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+
+const Uroute = require('./app/routes/user.routes');
+Uroute.app(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
