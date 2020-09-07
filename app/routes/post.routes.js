@@ -47,4 +47,14 @@ router.route('/update/:id').post((req, res) => {
     });
 });
 
+router.route('/api/comments/posts/:id').post((req, res) => {
+    Post.findById(req.params.id).then(post => {
+        post.comments.push(req.body.comment);
+
+        post.save()
+            .then(() => res.json('Comment added to the post'))
+            .catch(err => res.status(400).json({ error: err }));
+    });
+});
+
 module.exports = router;

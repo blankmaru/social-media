@@ -7,7 +7,7 @@ const CommentSchema = new Schema({
     author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     likes: { type: Number, required: true },
     dislikes: { type: Number, required: true },
-    date: { type: Date, required: true }
+    date: { type: Date }
 });
 
 const Comment = mongoose.model('Comment', CommentSchema);
