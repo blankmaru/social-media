@@ -68,8 +68,10 @@ function initial() {
 
 const PostRoute = require('./app/routes/post.routes');
 const AuthorRoute = require('./app/routes/user-author-access.routes');
+const CommentRoute = require('./app/routes/comment.routes');
 
 app.use('/explore', PostRoute);
+app.use('/api/comments', CommentRoute);
 app.use('/', AuthorRoute);
 require('./app/routes/auth.routes')(app);
 
