@@ -4,7 +4,7 @@ const Comment = db.comment;
 
 router.route('/:id').get((req, res) => {
     Comment.findById(req.params.id)
-        .then(posts => res.json(posts))
+        .then(comments => res.json(comments))
         .catch(err => res.status(400).json({ error: err }));
 });
 
@@ -14,13 +14,15 @@ router.route('/add').post((req, res) => {
     const author = req.body.author;
     const likes = req.body.likes;
     const dislikes = req.body.dislikes;
+    const date = req.body.date;
 
     const newComment = new Comment({
         userAvatar,
         content,
         author,
         likes,
-        dislikes
+        dislikes,
+        date
     });
 
     newComment.save()

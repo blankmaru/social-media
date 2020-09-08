@@ -1,11 +1,20 @@
 const router = require('express').Router();
 const db = require('../models/index');
+const { Mongoose } = require('mongoose');
 const Post = db.post;
+const ObjectId = require('mongoose').ObjectId;
 
 router.route('/').get((req, res) => {
     Post.find()
         .then(posts => res.json(posts))
         .catch(err => console.error(err));
+});
+
+router.route('/:id').get((req, res) => {
+    Post.findById(req.params.id).then(post => {
+        res.json(post);
+    })
+    .catch(err => res.status(400).json({ error: err }))
 });
 
 router.route('/add').post((req, res) => {
