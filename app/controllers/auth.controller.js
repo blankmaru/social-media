@@ -103,7 +103,9 @@ exports.signin = (req, res) => {
         username: user.username,
         email: user.email,
         roles: authorities,
-        accessToken: token
+        accessToken: token,
+        avatar: 'https://i.pinimg.com/originals/36/94/88/3694883db86f21a6b0aa0c2e0d3793b5.jpg',
+        profileBg: 'https://i.pinimg.com/originals/2c/c4/56/2cc456e2aad19112252bc886362a7d58.jpg'
       });
     });
 };
